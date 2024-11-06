@@ -30,8 +30,8 @@ type APIResult struct {
 	Bonus              interface{} `json:"bonus"`    // Can be string or float64
 	Depo               interface{} `json:"depo"`     // Can be string or float64
 	Withd              interface{} `json:"withd"`    // Can be string or float64
-	Netrev             float32     `json:"netrev"`   // Can be string or float64
-	RevShareCommission interface{} `json:"revShareCommission"`
+	Netrev             interface{} `json:"netrev"`   // Can be string or float64
+	RevShareCommission float64     `json:"revShareCommission"`
 }
 
 func RootGet(c *gin.Context) {
