@@ -17,20 +17,21 @@ import (
 
 // Define the external API response format
 type APIResult struct {
-	ID       string      `json:"id"`
-	Date     string      `json:"date"`
-	Campaign string      `json:"campaign"`
-	SignUps  int         `json:"signups"`
-	Ftd      *int        `json:"ftd"`
-	Cpa      *int        `json:"cpa"`
-	Deposits interface{} `json:"deposits"` // Can be string or float64
-	Ggr      interface{} `json:"ggr"`      // Can be string or float64
-	Bet      interface{} `json:"bet"`      // Can be string or float64
-	Win      interface{} `json:"win"`      // Can be string or float64
-	Bonus    interface{} `json:"bonus"`    // Can be string or float64
-	Depo     interface{} `json:"depo"`     // Can be string or float64
-	Withd    interface{} `json:"withd"`    // Can be string or float64
-	Netrev   interface{} `json:"netrev"`   // Can be string or float64
+	ID                 string      `json:"id"`
+	Date               string      `json:"date"`
+	Campaign           string      `json:"campaign"`
+	SignUps            int         `json:"signups"`
+	Ftd                *int        `json:"ftd"`
+	Cpa                *int        `json:"cpa"`
+	Deposits           interface{} `json:"deposits"` // Can be string or float64
+	Ggr                interface{} `json:"ggr"`      // Can be string or float64
+	Bet                interface{} `json:"bet"`      // Can be string or float64
+	Win                interface{} `json:"win"`      // Can be string or float64
+	Bonus              interface{} `json:"bonus"`    // Can be string or float64
+	Depo               interface{} `json:"depo"`     // Can be string or float64
+	Withd              interface{} `json:"withd"`    // Can be string or float64
+	Netrev             interface{} `json:"netrev"`   // Can be string or float64
+	RevShareCommission interface{} `json:"revShareCommission"`
 }
 
 func RootGet(c *gin.Context) {
@@ -130,10 +131,10 @@ func RootGet(c *gin.Context) {
 			Ftd:                getOrDefault(result.Ftd, 0),
 			Cpa:                getOrDefault(result.Cpa, 0),
 			Deposits:           parseToCents(result.Deposits),
-			Clicks:             0,   // Assuming Clicks is 0 as it's not provided in the API response
-			CpaCommission:      0.0, // Assuming CpaCommission is 0 as it's not provided in the API response
-			RevShareCommission: 0.0, // Assuming RevShareCommission is 0 as it's not provided in the API response
-			TotalCommission:    0.0, // Assuming TotalCommission is 0 as it's not provided in the API response
+			Clicks:             0,                                       // Assuming Clicks is 0 as it's not provided in the API response
+			CpaCommission:      0.0,                                     // Assuming CpaCommission is 0 as it's not provided in the API response
+			RevShareCommission: parseToCents(result.RevShareCommission), // Assuming RevShareCommission is 0 as it's not provided in the API response
+			TotalCommission:    0.0,                                     // Assuming TotalCommission is 0 as it's not provided in the API response
 			Ggr:                parseToCents(result.Ggr),
 			Bet:                parseToCents(result.Bet),
 			Win:                parseToCents(result.Win),
