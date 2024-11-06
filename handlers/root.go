@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"math"
 	"net/http"
 	"strconv"
 	"time"
@@ -177,8 +176,6 @@ func parseToCents(value interface{}) float64 {
 		return 0.0
 	}
 
-	floatValue *= 100
-
 	// Multiply by 100 to convert to cents
-	return math.Round(floatValue*100) / 100
+	return floatValue
 }
