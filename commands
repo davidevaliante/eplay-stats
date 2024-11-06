@@ -1,0 +1,3 @@
+ps aux | grep main
+kill <PID>
+nohup ./main > output.log 2>&1 &
