@@ -130,10 +130,10 @@ func RootGet(c *gin.Context) {
 			Ftd:                getOrDefault(result.Ftd, 0),
 			Cpa:                getOrDefault(result.Cpa, 0),
 			Deposits:           parseToCents(result.Deposits),
-			Clicks:             0,                         // Assuming Clicks is 0 as it's not provided in the API response
-			CpaCommission:      0.0,                       // Assuming CpaCommission is 0 as it's not provided in the API response
-			RevShareCommission: result.RevShareCommission, // Assuming RevShareCommission is 0 as it's not provided in the API response
-			TotalCommission:    0.0,                       // Assuming TotalCommission is 0 as it's not provided in the API response
+			Clicks:             0,                                         // Assuming Clicks is 0 as it's not provided in the API response
+			CpaCommission:      0.0,                                       // Assuming CpaCommission is 0 as it's not provided in the API response
+			RevShareCommission: convertToEuros(result.RevShareCommission), // Assuming RevShareCommission is 0 as it's not provided in the API response
+			TotalCommission:    0.0,                                       // Assuming TotalCommission is 0 as it's not provided in the API response
 			Ggr:                parseToCents(result.Ggr),
 			Bet:                parseToCents(result.Bet),
 			Win:                parseToCents(result.Win),
@@ -178,4 +178,11 @@ func parseToCents(value interface{}) float64 {
 
 	// Multiply by 100 to convert to cents
 	return floatValue
+}
+
+// Helper function to convert cents to euros (xx.dd format)
+func convertToEuros(cents interface{}) float64 {
+	centsValue := parseToCents(cents)
+	// Convert cents to euros by dividing by 100
+	return centsValue / 100
 }
