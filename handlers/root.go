@@ -107,9 +107,7 @@ func RootGet(c *gin.Context) {
 	}
 
 	// Define the structure of the response from the API
-	type APIResponse struct {
-		Results []APIResult `json:"results"`
-	}
+	type APIResponse []APIResult
 
 	// Unmarshal the body into the APIResponse structure
 	var apiResponse APIResponse
@@ -122,7 +120,7 @@ func RootGet(c *gin.Context) {
 
 	// Transform the APIResult into Campaign struct
 	var campaigns []models.Campaign
-	for _, result := range apiResponse.Results {
+	for _, result := range apiResponse {
 		campaign := models.Campaign{
 			Date:               result.Date,
 			Campaign:           result.Campaign,
