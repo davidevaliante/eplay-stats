@@ -22,7 +22,7 @@ type APIResult struct {
 	SignUps            int         `json:"signups"`
 	Ftd                *int        `json:"ftd"`
 	Cpa                *int        `json:"cpa"`
-	Deposits           interface{} `json:"deposits"` // Can be string or float64
+	Deposits           int         `json:"deposits"` // Can be string or float64
 	Ggr                interface{} `json:"ggr"`      // Can be string or float64
 	Bet                interface{} `json:"bet"`      // Can be string or float64
 	Win                interface{} `json:"win"`      // Can be string or float64
@@ -127,7 +127,7 @@ func RootGet(c *gin.Context) {
 			SignUps:            result.SignUps,
 			Ftd:                getOrDefault(result.Ftd, 0),
 			Cpa:                getOrDefault(result.Cpa, 0),
-			Deposits:           parseToCents(result.Deposits),
+			Deposits:           convertToEuros(result.Depo),
 			Clicks:             0,                                         // Assuming Clicks is 0 as it's not provided in the API response
 			CpaCommission:      0.0,                                       // Assuming CpaCommission is 0 as it's not provided in the API response
 			RevShareCommission: convertToEuros(result.RevShareCommission), // Assuming RevShareCommission is 0 as it's not provided in the API response
@@ -136,7 +136,7 @@ func RootGet(c *gin.Context) {
 			Bet:                parseToCents(result.Bet),
 			Win:                parseToCents(result.Win),
 			Bonus:              parseToCents(result.Bonus),
-			Depo:               parseToCents(result.Depo),
+			Depo:               result.Deposits,
 			Withd:              parseToCents(result.Withd),
 			Netrev:             parseToCents(result.Netrev),
 		}

@@ -15,7 +15,7 @@ type Campaign struct {
 	Bet                float64 `json:"bet"`
 	Win                float64 `json:"win"`
 	Bonus              float64 `json:"bonus"`
-	Depo               float64 `json:"depo"`
+	Depo               int     `json:"depo"`
 	Withd              float64 `json:"withd"`
 	Netrev             float64 `json:"netrev"`
 }
