@@ -123,7 +123,7 @@ func RootGet(c *gin.Context) {
 	for _, result := range apiResponse {
 		campaign := models.Campaign{
 			Date:               result.Date,
-			Campaign:           result.ID,
+			Campaign:           result.Campaign,
 			SignUps:            result.SignUps,
 			Ftd:                getOrDefault(result.Ftd, 0),
 			Cpa:                getOrDefault(result.Cpa, 0),
