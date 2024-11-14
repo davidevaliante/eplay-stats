@@ -122,6 +122,7 @@ func RootGet(c *gin.Context) {
 	var campaigns []models.Campaign
 	for _, result := range apiResponse {
 		campaign := models.Campaign{
+			ID:                 result.ID,
 			Date:               result.Date,
 			Campaign:           result.Campaign,
 			SignUps:            result.SignUps,

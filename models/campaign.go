@@ -2,7 +2,8 @@ package models
 
 type Campaign struct {
 	Date               string  `json:"date"`
-	Campaign           string  `json:"id"`
+	ID                 string  `json:"id"`
+	Campaign           string  `json:"campaign"`
 	SignUps            int     `json:"signups"`
 	Ftd                int     `json:"ftd"`
 	Cpa                int     `json:"cpa"`
